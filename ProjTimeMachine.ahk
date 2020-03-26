@@ -4,24 +4,28 @@
 ;You should have received a copy of the GNU General Public License along with ProjTimeMachine.  If not, see <https://www.gnu.org/licenses/>.
 
 ;Language variables
-DropHere = Arraste os arquivos aqui`n`n`n`n`n
-Copy =  `n`n`n<a href="%A_ScriptDir%\License.txt"> © Copyright 2020 Bruno Heleno.</a>`nVeja meu <a href="https://www.vimeo.com/bruneleno">portifólio</a> ou entre em <a href="mailto:brunohelenob@gmail.com">contato</a>.
-FreeSoft =   Este programa é um software livre. <a href="%A_ScriptDir%\License.txt">Leia os termos.</a>
-NoFile =   Nenhum arquivo ".prproj" detectado. <a href="">Tentar novamente?</a>  `n`n`n
-UnsupportedNotice =   Algumas funções do projeto não estarão disponíveis, caso sua versão do Premiere não as suporte.
-NonDestructive =   Este programa não afeta os arquivos originais.  Ele cria cópias, com o sufixo "_retrocompativel".  `nSe você já tiver arquivos com esse sufixo, eles podem ser substituídos.  `n
-SingFiles = Arquivo detectado. <a href="">Converter agora?</a>  `n
-PluFiles = Arquivos detectados. <a href="">Converter todos?</a>  `n
-TheWordFile = Arquivo ; this is literally the word "file" since i already use "file" as a variable in this program
-FileReady = pronto. Você pode 
-OpenFolder = abrir a pasta</a> ou 
-OpenFile = abrir o arquivo</a>.  `n
-Done = Tudo pronto!
-FileInfo = O arquivo está salvo ao lado do original, com o sufixo "_retrocompativel".`nAo abrí-lo, o Premiere te pedirá para convertê-lo para a versão que você está usando.  `n
-FilesInfo = Os arquivos estão salvos ao lado dos originais, com o sufixo "_retrocompativel".`nAo abrí-los, o Premiere te pedirá para convertê-lo para a versão que você está usando.  `n
-7z_Error = ERRO: 7za.exe não encontrado. Confira se extraiu todos os aquivos adicionais na mesma pasta deste EXE.
-Restart = <a href="">Reiniciar</a>
-suffix = retrocompativelson
+suffix = retrocompatible
+DropHereX = 50
+CopyX = 165
+DropHere = Drop files here`n`n`n`n`n
+Copy =  `n`n`n<a href="%A_ScriptDir%\License.txt"> © Copyright 2020 Bruno Heleno.</a>`nSee my <a href="https://www.vimeo.com/bruneleno">portfolio</a> or <a href="mailto:brunohelenob@gmail.com">contact me</a>.
+FreeSoft =   This program is free software. <a href="%A_ScriptDir%\License.txt">Read more.</a>
+NoFile =   No ".prproj" file detected. <a href="">Try again?</a>  `n`n`n
+UnsupportedNotice =   In case your version of Premiere doesn't support a feature used in this project, it might be ignored by the program.
+NonDestructive =   This app does not affect the original project files.  It creates copies, under the "_%suffix%" suffix.  `nIf you already have files with this suffix, then they will be replaced.  `n
+SingFile = File found.
+ConvNow = Convert now?`n
+PluFiles = Files found. 
+ConvAll = Convert all?`n
+TheWordFile = File ; this is literally the word "file" since i already use "file" as a variable in this program
+FileReady = ready. You can 
+OpenFolder = open it's folder</a> or  
+OpenFile = open the file</a>.  `n
+Done = All done!
+FileInfo = The file is saved alongside the original, with the "_%suffix%" suffix.`nUpon opening it, Premiere will prompt you to convert it to the version you're currently using.  `n
+FilesInfo = The files are saved alongside the original, with the "_%suffix%" suffix.`nUpon opening them, Premiere will prompt you to convert it to the version you're currently using.  `n
+7z_Error = ERROR: 7za.exe not found. Make shure you extracted all additional files in the same folder as this EXE.
+Restart = <a href="">Try Again/convert more files</a>
 ;;;;
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
@@ -77,7 +81,7 @@ Loop, Parse, A_GuiEvent, `n
 Sleep, 1
 if Nn < 1
 {
-Gui, Main:Add, Link, gReset,% NoFile
+Gui, Main:Add, Link, w%A_GuiWidth% gReset,% NoFile
 }
 else
 {
@@ -85,9 +89,9 @@ Gui, Main:Add, Text, cRed ,% UnsupportedNotice
 Gui, Main:Add, Text, ,% NonDestructive
 }
 If Nn = 1
-Gui, Main:Add, Link, gConvert,%  Nn " "SingFiles
+Gui, Main:Add, Link, vConvSingLink gConvert,  %Nn%  %SingFile% <a href="">%ConvNow%</a>
 If Nn > 1
-Gui, Main:Add, Link, gConvert,%  Nn " "PluFiles
+Gui, Main:Add, Link, vConvAllLink gConvert,  %Nn%  %PluFiles% <a href="">%ConvAll%</a>
 }
 Else
 {
@@ -96,7 +100,9 @@ Gui, Main:Show, AutoSize
 Return
 
 Convert:
+If !NotFirstConversion
 {
+NotFirstConversion .= 1
 Gui, Main:-AlwaysOnTop +MinimizeBox
 Loop, Parse, FileList, `n
 {
@@ -127,7 +133,7 @@ Loop, Parse, FileList, `n
 	FileAppend , %FinalStr%, %Proj%
 	RunWait, "%7z_path%" a "%file%" "%Proj%" , %Path%, Hide
 	FileDelete, %Proj%
-	Gui, Main:Add, Link,, %TheWordFile%  %A_Index%  %FileReady% <a href="%Path%">%OpenFolder%<a href="%File%">%OpenFile%
+	Gui, Main:Add, Link,, %TheWordFile%  %A_Index%  %FileReady% <a href="%Path%">%OpenFolder% <a href="%File%">%OpenFile%
 	Gui, Main:Show, AutoSize
 	Winset, redraw
 	}
@@ -155,15 +161,22 @@ Return
 MainGuiSize:
 if !Nn
 {
-GuiControl, Move, Text1, % "x" (A_GuiWidth / 2 - 80) "y" (A_GuiHeight / 2 - 10)
-GuiControl, Move, creditos, % "x" (A_GuiWidth - 200) "y" (A_GuiHeight - 75)
+GuiControl, Move, Text1, % "x" (A_GuiWidth / 2 - DropHereX) "y" (A_GuiHeight / 2 - 10)
+GuiControl, Move, creditos, % "x" (A_GuiWidth - CopyX) "y" (A_GuiHeight - 75)
 }
 else
 {
-GuiControl, Hide, Text1
-GuiControl, Move, creditos, % "x" (A_GuiWidth - 200) "y" (A_GuiHeight - 65)
+GuiControl, Move, Text1, x-100 y-100
+GuiControl, Move, creditos, % "x" (A_GuiWidth - CopyX) "y" (A_GuiHeight - 65)
+sleep,10
 Gui, Main:Show, AutoSize
 }
+If NotFirstConversion = 1
+{
+GuiControl, Text, ConvSingLink,  %Nn%  %SingFile% %ConvNow%
+GuiControl, Text, ConvAllLink,  %Nn%  %PluFiles% %ConvAll%
+}
+Winset, Redraw
 Return
 
 Reset:

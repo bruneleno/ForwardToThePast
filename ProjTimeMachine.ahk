@@ -3,7 +3,46 @@
 ;ProjTimeMachine is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 ;You should have received a copy of the GNU General Public License along with ProjTimeMachine.  If not, see <https://www.gnu.org/licenses/>.
 
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#SingleInstance Off
+#NoTrayIcon
+lang = EN
+
 ;Language variables
+if lang = PT
+{
+;Portuguese Translation
+suffix = retrocompativel
+DropHereX = 80
+CopyX = 200
+DropHere = Arraste os arquivos aqui`n`n`n`n`n
+Copy =  `n`n`n<a href="%A_ScriptDir%\License.txt"> © Copyright 2020 Bruno Heleno.</a>`nVeja meu <a href="https://www.vimeo.com/bruneleno">portifólio</a> ou entre em <a href="mailto:brunohelenob@gmail.com">contato</a>.
+FreeSoft =   Este programa é um software livre. <a href="%A_ScriptDir%\License.txt">Leia os termos.</a>
+NoFile =   Nenhum arquivo ".prproj" detectado. <a href="">Tentar novamente?</a>  `n`n`n
+UnsupportedNotice =   Algumas funções do projeto não estarão disponíveis, caso sua versão do Premiere não as suporte.
+NonDestructive =   Este programa não afeta os arquivos originais.  Ele cria cópias, com o sufixo "_%suffix%".  `nSe você já tiver arquivos com esse sufixo, eles podem ser substituídos.  `n
+SingFile = Arquivo detectado. 
+ConvNow = Converter agora?`n
+PluFiles = Arquivos detectados.
+ConvAll = Converter todos?`n
+TheWordFile = Arquivo ; this is literally the word "file" since i already use "file" as a variable in this program
+FileReady = pronto. Você pode 
+OpenFolder = abrir a pasta</a> ou 
+OpenFile = abrir o arquivo</a>.  `n
+Done = Tudo pronto!
+FileInfo = O arquivo está salvo ao lado do original, com o sufixo "_%suffix%".`nAo abrí-lo, o Premiere te pedirá para convertê-lo para a versão que você está usando.  `n
+FilesInfo = Os arquivos estão salvos ao lado dos originais, com o sufixo "_%suffix%".`nAo abrí-los, o Premiere te pedirá para convertê-lo para a versão que você está usando.  `n
+7z_Error = ERRO: 7za.exe não encontrado. Confira se extraiu todos os aquivos adicionais na mesma pasta deste EXE.
+Restart = <a href="">Reiniciar</a>
+;;;;
+}
+Else
+{
+;English
 suffix = retrocompatible
 DropHereX = 50
 CopyX = 165
@@ -27,13 +66,7 @@ FilesInfo = The files are saved alongside the original, with the "_%suffix%" suf
 7z_Error = ERROR: 7za.exe not found. Make shure you extracted all additional files in the same folder as this EXE.
 Restart = <a href="">Try Again/convert more files</a>
 ;;;;
-
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-#SingleInstance Off
-#NoTrayIcon
+}
 
 
 7z_path = %A_ScriptDir%\7z\7za.exe

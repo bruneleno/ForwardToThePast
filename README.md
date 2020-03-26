@@ -5,7 +5,7 @@ Proj TimeMachine is a PC app that makes premiere projects compatible with older 
 
 
 # Compilation
-Right now, the only way to get it is by either compiling it yourself or running it with <a href="https://www.autohotkey.com/">AutoHotkey</a> installed. Luckly, it is easy to do. Just install AHK from it's website and download the repo. If you want to support me, I'll be selling an easy to use, pre-compiled EXE of it for $1.
+Right now, the only way to get it is by either compiling it yourself or running it with <a href="https://www.autohotkey.com/">AutoHotkey</a> installed. Luckly, it is easy to do. Just install AHK from it's website and download the repo. If you want to support me, I'll be selling an easy to use, pre-compiled EXE of it for $2.
 
 
 

@@ -1,2 +1,2 @@
 # ProjTimeMachine
-A PC app that makes your premiere projects open on older versions of the program.
+A PC app that makes premiere projects compatible with older versions of the program.

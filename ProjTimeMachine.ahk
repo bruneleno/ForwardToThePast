@@ -10,6 +10,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance Off
 #NoTrayIcon
+
 lang = EN
 
 ;Language variables
@@ -30,9 +31,10 @@ ConvNow = Converter agora?`n
 PluFiles = Arquivos detectados.
 ConvAll = Converter todos?`n
 TheWordFile = Arquivo ; this is literally the word "file" since i already use "file" as a variable in this program
-FileReady = pronto. Você pode 
-OpenFolder = abrir a pasta</a> ou 
-OpenFile = abrir o arquivo</a>.  `n
+FileReady = Arquivo pronto. Você pode 
+FilesReady = Arquivos prontos. Você pode
+OpenFolder = abrir a pasta</a> 
+OpenFile = ou abrir o arquivo</a>.  `n
 Done = Tudo pronto!
 FileInfo = O arquivo está salvo ao lado do original, com o sufixo "_%suffix%".`nAo abrí-lo, o Premiere te pedirá para convertê-lo para a versão que você está usando.  `n
 FilesInfo = Os arquivos estão salvos ao lado dos originais, com o sufixo "_%suffix%".`nAo abrí-los, o Premiere te pedirá para convertê-lo para a versão que você está usando.  `n
@@ -57,9 +59,10 @@ ConvNow = Convert now?`n
 PluFiles = Files found. 
 ConvAll = Convert all?`n
 TheWordFile = File ; this is literally the word "file" since i already use "file" as a variable in this program
-FileReady = ready. You can 
-OpenFolder = open it's folder</a> or  
-OpenFile = open the file</a>.  `n
+FileReady = File ready. You can 
+FilesReady = Files ready. You can 
+OpenFolder = open it's folder</a>   
+OpenFile = or open the file</a>.  `n
 Done = All done!
 FileInfo = The file is saved alongside the original, with the "_%suffix%" suffix.`nUpon opening it, Premiere will prompt you to convert it to the version you're currently using.  `n
 FilesInfo = The files are saved alongside the original, with the "_%suffix%" suffix.`nUpon opening them, Premiere will prompt you to convert it to the version you're currently using.  `n
@@ -81,7 +84,7 @@ Goto TheEnd
 Gui, Main:New
 Gui, Main:Color , 232323
 Gui, Main:Show, w600 h200, Máquina do Tempo
-Gui, Main:+AlwaysOnTop -MaximizeBox -MinimizeBox +MinSize600x200
+Gui, Main:+AlwaysOnTop -MaximizeBox +MinSize600x200
 Gui, Main:Font, s12 q5 c8A8A8A
 Gui, Main:Add, Text, y-80 vText1,% DropHere
 Gui, Main:Font, s9 q5 c8A8A8A
@@ -129,7 +132,7 @@ Gui, Main:Add, Link, vConvAllLink gConvert,  %Nn%  %PluFiles% <a href="">%ConvAl
 Else
 {
 }
-Gui, Main:Show, AutoSize
+Gui, Main:Show, NA AutoSize 
 Return
 
 Convert:
@@ -137,6 +140,32 @@ If !NotFirstConversion
 {
 NotFirstConversion .= 1
 Gui, Main:-AlwaysOnTop +MinimizeBox
+Count := 0
+Loop, Parse, FileList, `n
+{
+	Field := A_LoopField
+	Loop, Parse, Field, \
+	{
+	Length := StrLen(A_LoopField)
+	FLength := - Length
+	File := SubStr(Field, FLength + 1, Length)
+	Path := SubStr(Field, 1 , FLength -1)
+	}
+	StringRight, NewStr, A_LoopField, 7
+	If (NewStr = ".prproj")
+	{
+	Count := Count+1
+	}
+}
+ProgUnit := 100/Count
+Gui, Add, Progress, w800 h20 c38ff9b vProgressb +Background232323, 0
+Gui, Add, Text, vParagrath , `n`n
+Gui, Main:Show, NA AutoSize 
+if Count = 1
+GuiControl,, Progressb, 50
+else
+GuiControl,, Progressb,% "+"ProgUnit
+sleep, 10
 Loop, Parse, FileList, `n
 {
 	Field := A_LoopField
@@ -166,12 +195,19 @@ Loop, Parse, FileList, `n
 	FileAppend , %FinalStr%, %Proj%
 	RunWait, "%7z_path%" a "%file%" "%Proj%" , %Path%, Hide
 	FileDelete, %Proj%
-	Gui, Main:Add, Link,, %TheWordFile%  %A_Index%  %FileReady% <a href="%Path%">%OpenFolder% <a href="%File%">%OpenFile%
-	Gui, Main:Show, AutoSize
+	Gui, Main:Show, NA AutoSize 
 	Winset, redraw
+	LastPath := Path
+	LastFile := File
+	GuiControl,, Progressb,% "+"ProgUnit
 	}
 	continue
 } 
+SoundPlay, *48
+if Nn = 1
+Gui, Main:Add, Link, yp10, %FileReady% <a href="%Path%">%OpenFolder% <a href="%File%">%OpenFile%
+else
+Gui, Main:Add, Link, yp10, %Count% %FilesReady% <a href="%Path%">%OpenFolder%.
 Sleep, 1
 Gui, Main:Font, w600
 Gui, Main:Add, Text, c38ff9b,% Done
@@ -185,9 +221,9 @@ else
 Gui, Main:Add, Text,,% FilesInfo
 }
 Gui, Main:Add, Link, gReset,% Restart
-Gui, Main:Show, AutoSize
+Gui, Main:Show, NA AutoSize 
 Winset, redraw
-Gui, Main:Show, AutoSize
+Gui, Main:Show, NA AutoSize 
 }
 Return
 
@@ -202,7 +238,7 @@ else
 GuiControl, Move, Text1, x-100 y-100
 GuiControl, Move, creditos, % "x" (A_GuiWidth - CopyX) "y" (A_GuiHeight - 65)
 sleep,10
-Gui, Main:Show, AutoSize
+Gui, Main:Show, NA AutoSize 
 }
 If NotFirstConversion = 1
 {

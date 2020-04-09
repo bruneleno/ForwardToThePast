@@ -5,7 +5,7 @@ Proj TimeMachine is a PC app that makes premiere projects compatible with older 
 
 
 # Support my work
-Please, consider helping me with any amount to help me update the software and create new tools.
+Please, consider helping me with any amount to help me update the software and create new tools. </br></br>
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EEQ5C56XVNBAN&source=url)
 
 

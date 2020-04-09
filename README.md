@@ -3,9 +3,14 @@ If you edit on Premiere Pro, or use any adobe products for that matter, you've p
 Proj TimeMachine is a PC app that makes premiere projects compatible with older versions of the program. Just drag and drop as many files as you want, and it should do the trick in seconds. Yes, it's that easy.
 
 
+
+# Support my work
+Please, consider helping me with any amount to help me update the software and create new tools.
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EEQ5C56XVNBAN&source=url)
+
+
 # Installing
-If you want to support me AND get a pre-compiled, ready to run version of the app, you can get it, for $1,99 with [![paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-small.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YAJSCD6JK8BN6) .
-If you're a bit more advanced and my eternal gratitude is not valuable enouth for you, you can get it for free by compiling it yourself, following the instructions below (it's not that hard):
+Get the compiled release on the [releases](https://github.com/bruneleno/ProjTimeMachine/releases) page. Just run the EXE file in a folder that also contarins the Support_Files folder.
 
 
 # Compilation

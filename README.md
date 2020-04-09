@@ -10,7 +10,7 @@ Consider helping me with any amount so I can keep updating the software and crea
 
 
 # Installing
-Get the compiled release on the [releases](https://github.com/bruneleno/ProjTimeMachine/releases) page. Just run the EXE file in a folder that also contarins the Support_Files folder.
+Get the compiled release on the [releases](https://github.com/bruneleno/ProjTimeMachine/releases) page. Just run the EXE and make shure you have all the additional files and folders.
 
 
 # Compilation

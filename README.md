@@ -9,7 +9,7 @@ Consider helping me with any amount so I can keep updating the software and crea
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EEQ5C56XVNBAN&source=url)
 
 
-# Installing
+# [Download v1.2](https://github.com/bruneleno/ForwardToThePast/releases/tag/1.2)
 Get the compiled release on the [releases](https://github.com/bruneleno/ForwardToThePast/releases) page. Just run the EXE and make shure you have all the additional files and folders.
 
 

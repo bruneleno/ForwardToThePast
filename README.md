@@ -1,6 +1,6 @@
-# Proj TimeMachine
+# Forward to the past!
 If you edit on Premiere Pro, or use any adobe products for that matter, you've probably heard that you should wait a month or more after an update is release to actually update your software, to prevent bugs and crashes. Or maybe you simply doesn't have time to update. But we all have that co-worker who updates their adobe suite at the very first seconds of the release to get in touch with the new features. Unfortunately, if this guy sends you a .prproj file you would have no option but to update your suite if you want to open the file. No more.
-Proj TimeMachine is a PC app that makes premiere projects compatible with older versions of the program. Just drag and drop as many files as you want, and it should do the trick in seconds. Yes, it's that easy.
+Forward to the past is a PC app that makes premiere projects compatible with older versions of the program. Just drag and drop as many files as you want, and it should do the trick in seconds. Yes, it's that easy.
 
 
 
@@ -10,7 +10,7 @@ Consider helping me with any amount so I can keep updating the software and crea
 
 
 # Installing
-Get the compiled release on the [releases](https://github.com/bruneleno/ProjTimeMachine/releases) page. Just run the EXE and make shure you have all the additional files and folders.
+Get the compiled release on the [releases](https://github.com/bruneleno/ForwardToThePast/releases) page. Just run the EXE and make shure you have all the additional files and folders.
 
 
 # Compilation
